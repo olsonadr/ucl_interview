@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag olsonadr/ucl_interview:test
     - name: Run tests
-      run: docker run --name ucl_interview --rm -it olsonadr/ucl_interview:test
+      run: docker run --name ucl_interview --rm --tag olsonadr/ucl_interview:test
