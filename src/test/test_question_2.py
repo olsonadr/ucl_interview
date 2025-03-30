@@ -68,7 +68,9 @@ def test_reachable__in_and_out_given(
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
 
+
 # Specialized tests for edge cases and additional scenarios for `reachable`
+
 
 def test_reachable__empty_graph():
     """
@@ -80,6 +82,7 @@ def test_reachable__empty_graph():
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
 
+
 def test_reachable__single_node_no_edges():
     """
     Test `reachable` with a single node graph with no edges.
@@ -89,6 +92,7 @@ def test_reachable__single_node_no_edges():
     expected_res = {0}
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
+
 
 def test_reachable__disconnected_graph():
     """
@@ -100,6 +104,7 @@ def test_reachable__disconnected_graph():
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
 
+
 def test_reachable__cyclic_graph():
     """
     Test `reachable` with a cyclic graph.
@@ -110,6 +115,7 @@ def test_reachable__cyclic_graph():
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
 
+
 def test_reachable__self_loop():
     """
     Test `reachable` with a graph containing a self-loop.
@@ -119,6 +125,7 @@ def test_reachable__self_loop():
     expected_res = {1, 2}
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
+
 
 def test_reachable__large_graph():
     """

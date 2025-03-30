@@ -36,6 +36,10 @@ def reachable(adj_list, start_node):
          (prevents unbounded loop issues for cycles)
      - Return visited set (all nodes we *did* reach from start_node)
     """
+    # Validate input
+    if start_node >= len(adj_list) or start_node < 0:
+        return set()
+
     # 1 - Direct approach:
     visited = set()
     work_set = {start_node}
