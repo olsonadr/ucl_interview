@@ -37,6 +37,6 @@ COPY --from=builder /app/.venv/ /app/.venv/
 FROM python_deps as run_app
 
 WORKDIR /app
-ADD src test /app/
+ADD src /app/
 
 CMD ["./.venv/bin/python", "-m", "pytest"]

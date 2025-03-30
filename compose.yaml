@@ -1,5 +1,5 @@
 services:
-  app:
+  test:
     image: olsonadr/ucl_interview
     container_name: ucl_interview
     build:

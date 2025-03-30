@@ -2,16 +2,45 @@
 
 ## Project Structure
 
-<!-- The src and test directories -->
+- **`src/`**: the source code for the individual assignments.
+    - **`src/test/`**: the test cases for the assignments.
 
 ## Requirements
 
-<!-- Requirements -->
+To run the tests for these assignments, you must setup one of the following:
+
+- **Docker**: To build and run the containerized application.
+- **Python and pytest**: To run tests locally without using Docker.
+
+Ensure you have these tools installed and properly configured on your system.
 
 ## Docker Usage
 
-<!-- How to run tests using docker -->
+### With compose:
 
-## Testing Methodology
+- Build:
+    ```shell
+    docker compose build
+    ```
+- Run image:
+    ```shell
+    docker compose run --rm -it test
+    ```
 
-<!-- The testing methodology -->
+### Without compose:
+
+- Build:
+    ```shell
+    docker build -t olsonadr/ucl_interview .
+    ```
+- Run image:
+    ```shell
+    docker run --name ucl_interview --rm -it olsonadr/ucl_interview
+    ```
+
+### Run existing image with src/test on your filesystem:
+
+From the project root directory:
+```shell
+docker run --name ucl_interview --rm -v "$(pwd)/src:/app/src" -it olsonadr/ucl_interview
+```
