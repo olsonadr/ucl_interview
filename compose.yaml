@@ -1,0 +1,6 @@
+services:
+  app:
+    image: olsonadr/ucl_interview
+    container_name: ucl_interview
+    build:
+      context: .
