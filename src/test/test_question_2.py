@@ -48,7 +48,8 @@ param_cases__input_adj_list_and_expected_output_set = [
 
 
 @pytest.mark.parametrize(
-    ["input_adj_list", "input_start_node", "expected_res"], param_cases__input_adj_list_and_expected_output_set
+    ["input_adj_list", "input_start_node", "expected_res"],
+    param_cases__input_adj_list_and_expected_output_set,
 )
 def test_reachable__in_and_out_given(
     input_adj_list: List[List[int]], input_start_node: int, expected_res: Set[int]
@@ -67,5 +68,64 @@ def test_reachable__in_and_out_given(
     actual_res = reachable(input_adj_list, input_start_node)
     assert actual_res == expected_res
 
+# Specialized tests for edge cases and additional scenarios for `reachable`
 
-# TODO: add specialized tests for Q2
+def test_reachable__empty_graph():
+    """
+    Test `reachable` with an empty graph (no nodes).
+    """
+    input_adj_list = []
+    input_start_node = 0
+    expected_res = set()
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
+
+def test_reachable__single_node_no_edges():
+    """
+    Test `reachable` with a single node graph with no edges.
+    """
+    input_adj_list = [[]]
+    input_start_node = 0
+    expected_res = {0}
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
+
+def test_reachable__disconnected_graph():
+    """
+    Test `reachable` with a graph where nodes are disconnected.
+    """
+    input_adj_list = [[], [], []]
+    input_start_node = 1
+    expected_res = {1}
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
+
+def test_reachable__cyclic_graph():
+    """
+    Test `reachable` with a cyclic graph.
+    """
+    input_adj_list = [[1], [2], [0]]
+    input_start_node = 0
+    expected_res = {0, 1, 2}
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
+
+def test_reachable__self_loop():
+    """
+    Test `reachable` with a graph containing a self-loop.
+    """
+    input_adj_list = [[0], [2], []]
+    input_start_node = 1
+    expected_res = {1, 2}
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
+
+def test_reachable__large_graph():
+    """
+    Test `reachable` with a larger graph to ensure scalability.
+    """
+    input_adj_list = [[1, 2], [3], [3, 4], [5], [5], []]
+    input_start_node = 0
+    expected_res = {0, 1, 2, 3, 4, 5}
+    actual_res = reachable(input_adj_list, input_start_node)
+    assert actual_res == expected_res
