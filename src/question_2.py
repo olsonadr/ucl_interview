@@ -35,6 +35,14 @@ def reachable(adj_list, start_node):
        - For any edge from curr_node to any other, add to work-set if not yet visited
          (prevents unbounded loop issues for cycles)
      - Return visited set (all nodes we *did* reach from start_node)
+    Notes after implementing:
+    - Recursion would be used for a depth-first search approach, otherwise this approach
+      is a breadth-first traversal whether I used a queue for the work list or a set.
+    - This is O(N+#edges) in time and O(N) in space complexity (for N=#vertices)
+        - It looks like it could be O(N*#edges), but the line that depends on the number
+          of edges out of each node is evaluated an absolute maximum of #edges_in_graph
+          times (not #edges_in_graph *for each* node)
+        - I don't see a more efficient answer without some magic math shortcut
     """
     # Validate input
     if start_node >= len(adj_list) or start_node < 0:
@@ -43,9 +51,25 @@ def reachable(adj_list, start_node):
     # 1 - Direct approach:
     visited = set()
     work_set = {start_node}
+    # Evaluated max N times
     while len(work_set) > 0:
         curr_node = work_set.pop()
         visited.add(curr_node)
         # Add connected+unvisited nodes to work_set
+        # O(#edges_from_node)
         work_set |= set(adj_list[curr_node]) - visited
     return visited
+
+    # # 1.5 - Direct approach with potentially more efficient checks:
+    # #       (depending on python internals):
+    # visited = set()
+    # work_set = {start_node}
+    # while len(work_set) > 0:  # Evaluated max N + #edges_in_graph
+    #     curr_node = work_set.pop()
+    #     if curr_node not in visited:  # difference between 1 and 1.5
+    #         visited.add(curr_node)
+    #         work_set.update(adj_list[curr_node])  # difference between 1 and 1.5
+    # return visited
+
+    # # 2 - Could use deque instead of set for more efficient python internals?
+    # #     (requires use of approach 1.5)

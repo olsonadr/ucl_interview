@@ -21,6 +21,8 @@ def mat_to_list(adj_mat):
     Notes:
      - Clearly paralelizable for every row as no prev row impacts current row behavior
      - Can't ignore half of the table because edges are directed
+     - This is O(N^2) in time and O(N+#edges) in space complexity (for N=#vertices)
+        - I don't see a more efficient algorithm without some magic math shortcut
     """
 
     # # 1 - Direct approach (using loops):
@@ -33,7 +35,7 @@ def mat_to_list(adj_mat):
     #     adj_list.append(adj_list_row)
     # return adj_list
 
-    # 1 - Direct approach (using list comprehension):
+    # 1.5 - Direct approach (using list comprehension):
     return [
         [ i for i, val in enumerate(row) if val != 0 ]
         for row in adj_mat

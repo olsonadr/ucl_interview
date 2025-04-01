@@ -1,4 +1,4 @@
-"""Tests for question_1.py"""
+"""Tests for question_2.py"""
 
 from typing import List, Set, Tuple
 
